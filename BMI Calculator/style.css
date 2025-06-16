@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eef;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 10px 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button.reset-btn {
+  background-color: #ccc;
+}
+
+button:not(.reset-btn) {
+  background-color: #007BFF;
+  color: white;
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
