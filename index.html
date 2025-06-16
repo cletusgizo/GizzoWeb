@@ -2,41 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Expense Tracker</title>
+  <title>BMI Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Expense Tracker</h1>
+    <h1>BMI Calculator</h1>
 
     <div class="form">
-      <input type="text" id="desc" placeholder="Description" />
-      <input type="number" id="amount" placeholder="Amount shouldn't be more than #100,000" />
-      <select id="category">
-        <option value="">Select Category</option>
-        <option value="Food">Food</option>
-        <option value="Transport">Transport</option>
-        <option value="Utilities">Utilities</option>
-        <option value="Other">Other</option>
-      </select>
-      <button onclick="addExpense()">Add Expense</button>
+      <input type="number" id="height" placeholder="Height (meters)" step="0.01">
+      <input type="number" id="weight" placeholder="Weight (kg)" step="0.1">
+      <button onclick="calculateBMI()">Calculate BMI</button>
+      <button onclick="resetForm()" class="reset-btn">Reset</button>
     </div>
 
-    <div class="filter">
-      <label for="filterCategory">Filter by Category:</label>
-      <select id="filterCategory" onchange="renderExpenses()">
-        <option value="">All</option>
-        <option value="Food">Food</option>
-        <option value="Transport">Transport</option>
-        <option value="Utilities">Utilities</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-
-    <ul id="expenseList"></ul>
-
-    <div id="total">Total: #0.00</div>
-    <div id="warning" class="hidden">⚠️ Warning: Spending limit exceeded!</div>
+    <div id="result"></div>
   </div>
 
   <script src="script.js"></script>

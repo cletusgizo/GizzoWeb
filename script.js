@@ -1,65 +1,34 @@
-let expenses = [];
-const threshold = 100000;
+function calculateBMI() {
+  const height = parseFloat(document.getElementById("height").value);
+  const weight = parseFloat(document.getElementById("weight").value);
+  const resultDiv = document.getElementById("result");
 
-function addExpense() {
-  const desc = document.getElementById("desc").value.trim();
-  const amount = parseFloat(document.getElementById("amount").value);
-  const category = document.getElementById("category").value;
+  resultDiv.textContent = ""; // Clear previous result
 
-  if (!desc || isNaN(amount) || amount <= 0 || !category) {
-    alert("Please enter valid description, amount, and category.");
+  // Input validation
+  if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+    alert("Please enter valid, positive numbers for height and weight.");
     return;
   }
 
-  const expense = {
-    id: Date.now(),
-    desc,
-    amount,
-    category
-  };
+  const bmi = weight / (height * height);
+  let status = "";
 
-  expenses.push(expense);
-
-  // Clear inputs
-  document.getElementById("desc").value = "";
-  document.getElementById("amount").value = "";
-  document.getElementById("category").value = "";
-
-  renderExpenses();
-}
-
-function deleteExpense(id) {
-  expenses = expenses.filter(exp => exp.id !== id);
-  renderExpenses();
-}
-
-function renderExpenses() {
-  const list = document.getElementById("expenseList");
-  list.innerHTML = "";
-
-  const filterCategory = document.getElementById("filterCategory").value;
-  const filteredExpenses = filterCategory
-    ? expenses.filter(exp => exp.category === filterCategory)
-    : expenses;
-
-  let total = 0;
-
-  filteredExpenses.forEach(exp => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      ${exp.desc} : #${exp.amount.toFixed(2)} <em>(${exp.category})</em>
-      <button class="delete-btn" onclick="deleteExpense(${exp.id})">X</button>
-    `;
-    list.appendChild(li);
-    total += exp.amount;
-  });
-
-  document.getElementById("total").textContent = `Total: #${total.toFixed(2)}`;
-
-  const warning = document.getElementById("warning");
-  if (total > threshold) {
-    warning.classList.remove("hidden");
+  if (bmi < 18.5) {
+    status = "Underweight";
+  } else if (bmi < 25) {
+    status = "Normal";
+  } else if (bmi < 30) {
+    status = "Overweight";
   } else {
-    warning.classList.add("hidden");
+    status = "Obese";
   }
+
+  resultDiv.innerHTML = `Your BMI is <strong>${bmi.toFixed(2)}</strong> (<span>${status}</span>)`;
+}
+
+function resetForm() {
+  document.getElementById("height").value = "";
+  document.getElementById("weight").value = "";
+  document.getElementById("result").textContent = "";
 }
